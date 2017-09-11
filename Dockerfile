@@ -20,5 +20,5 @@ FROM openjdk:8u131-jre-alpine
 MAINTAINER Hleb Albau <hleb.albau@gmail.com>
 VOLUME /kafka-manager/configuration
 
-COPY --from=build /kafka-manager/builded /kafka-manager
-ENTRYPOINT ["/kafka-manager-${KAFKA_MANAGER_VERSION}/bin/kafka-manager"]
+COPY --from=build /kafka-manager/builded/kafka-manager-${KAFKA_MANAGER_VERSION} /kafka-manager
+ENTRYPOINT ["/kafka-manager/bin/kafka-manager"]
