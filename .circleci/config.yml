@@ -11,8 +11,6 @@ defaults:
     filters:
       tags:
         only: /.*/
-      branches:
-        ignore: /.*/
 
 
 jobs:

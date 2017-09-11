@@ -21,4 +21,4 @@ MAINTAINER Hleb Albau <hleb.albau@gmail.com>
 VOLUME /kafka-manager/configuration
 
 COPY --from=build /kafka-manager/builded /kafka-manager
-ENTRYPOINT ["/kafka-manager/bin/kafka-manager"]
+ENTRYPOINT ["/kafka-manager-${KAFKA_MANAGER_VERSION}/bin/kafka-manager"]
