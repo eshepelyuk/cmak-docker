@@ -30,7 +30,7 @@ jobs:
              docker login -u $DOCKER_USER -p $DOCKER_PASS
              docker tag build/kafka-namager hlebalbau/kafka-namager:$CIRCLE_TAG
              docker push hlebalbau/kafka-namager:$CIRCLE_TAG
-             docker tag build/cm-stream-api hlebalbau/kafka-namager:latest
+             docker tag build/kafka-namager hlebalbau/kafka-namager:latest
              docker push hlebalbau/kafka-namager:latest
 
 
