@@ -1,0 +1,5 @@
+# decrease size of build context
+/.git
+/.gradle
+/.idea
+**/build
