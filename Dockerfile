@@ -19,7 +19,9 @@ RUN echo "Building Kafka Manager" \
 ### STAGE 2: IMAGE ###
 FROM openjdk:8u131-jre-alpine
 MAINTAINER Hleb Albau <hleb.albau@gmail.com>
-VOLUME /kafka-manager/configuration
 
+RUN apk update && apk add bash
 COPY --from=build /kafka-manager-bin /kafka-manager
+
+VOLUME /kafka-manager/configuration
 ENTRYPOINT ["/kafka-manager/bin/kafka-manager"]
