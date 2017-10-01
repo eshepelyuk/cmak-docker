@@ -1,5 +1,6 @@
 # kafka-manager-docker
-Kafka Manager Docker Images Build 
+Kafka Manager Docker Images Build
+Feel free to PRs and discussion.
 
 
 ### Using docker
