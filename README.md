@@ -17,10 +17,10 @@ docker run -d \
 
 ### Using docker-compose
 ```
-version: '3.3'
+version: '3.6'
 services:
   kafka_manager:
-    image: hlebalbau/kafka-manager
+    image: hlebalbau/kafka-manager:latest
     ports:
       - "9000:9000"
     environment:
