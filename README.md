@@ -37,6 +37,6 @@ through a [GitHub issue](https://github.com/hleb-albau/kafka-manager-docker/issu
 ## Contributing
 
 You are invited to contribute new features, fixes, or updates, large or small;
-i am always thrilled to receive pull requests, and do our best to process them
+I am always thrilled to receive pull requests, and do my best to process them
 as fast as I can.
 
