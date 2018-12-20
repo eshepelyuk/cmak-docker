@@ -5,13 +5,19 @@
  [![Docker pulls](https://img.shields.io/docker/pulls/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
 [![Docker Automated build](https://img.shields.io/docker/automated/hlebalbau/kafka-manager.svg?maxAge=31536000&style=flat-square)](https://github.com/hlebalbau/kafka-manager/)
 
+## Tags
+Kafka Manager images come in two flavors:
+
+- **stable:** Build from latest Kafka Manager repository release.
+- **latest:** Periodically assembled master builds. Better not to use in production.
+
 ## How to use this image
 ### Using docker
 ```
 docker run -d \
      -p 9000:9000  \
      -e ZK_HOSTS="localhost:2181" \
-     hlebalbau/kafka-manager:latest \
+     hlebalbau/kafka-manager:stable \
      -Dpidfile.path=/dev/null
 ```     
 
@@ -20,7 +26,7 @@ docker run -d \
 version: '3.6'
 services:
   kafka_manager:
-    image: hlebalbau/kafka-manager:latest
+    image: hlebalbau/kafka-manager:stable
     ports:
       - "9000:9000"
     environment:
