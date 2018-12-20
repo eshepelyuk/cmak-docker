@@ -1,6 +1,5 @@
 
 # kafka-manager-docker
-[![GitHub release](https://img.shields.io/github/release/hleb-albau/kafka-manager-docker.svg?style=flat-square)](https://github.com/hleb-albau/kafka-manager-docker/)
  [![Docker Stars](https://img.shields.io/docker/stars/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
  [![Docker pulls](https://img.shields.io/docker/pulls/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
 [![Docker Automated build](https://img.shields.io/docker/automated/hlebalbau/kafka-manager.svg?maxAge=31536000&style=flat-square)](https://github.com/hlebalbau/kafka-manager/)
