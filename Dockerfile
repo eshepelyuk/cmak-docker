@@ -2,8 +2,8 @@
 ### STAGE 1: Build ###
 FROM openjdk:8u131-jdk AS build
 
-ENV KAFKA_MANAGER_SOURCE=1.3.3.21
-ENV KAFKA_MANAGER_VERSION=48bb088a7aca34960e1f1d40741e0876f010d54c
+ENV KAFKA_MANAGER_SOURCE=48bb088a7aca34960e1f1d40741e0876f010d54c
+ENV KAFKA_MANAGER_VERSION=1.3.3.21
 
 RUN echo "Building Kafka Manager" \
     && wget "https://github.com/yahoo/kafka-manager/archive/${KAFKA_MANAGER_SOURCE}.tar.gz" -O kafka-manager-sources.tar.gz \
