@@ -34,6 +34,15 @@ services:
     command: -Dpidfile.path=/dev/null
 ```
 
+### Secure with basic authentication
+
+Add the following env variables if you want to protect the web UI with basic authentication:  
+```
+KAFKA_MANAGER_AUTH_ENABLED: "true"
+KAFKA_MANAGER_USERNAME: username
+KAFKA_MANAGER_PASSWORD: password
+```
+
 ## Issues
 
 If you have any problems with or questions about this image, please contact us
