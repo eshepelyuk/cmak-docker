@@ -14,7 +14,7 @@ phases:
     commands:
       - echo "building image"
       - echo "starting build..."
-      - docker build -f Dockerfile -t kafka-manager
+      - docker build -f Dockerfile -t kafka-manager .
       - docker tag kafka-manager:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/kafka-manager:$IMAGE_TAG
       - docker tag kafka-manager:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/kafka-manager:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build:
