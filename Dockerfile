@@ -1,9 +1,9 @@
 
 ### STAGE 1: Build ###
-FROM openjdk:8-jdk AS build
+FROM openjdk:11-jdk AS build
 
-ENV KAFKA_MANAGER_SOURCE=2.0.0.2
-ENV KAFKA_MANAGER_VERSION=2.0.0.2
+ENV KAFKA_MANAGER_SOURCE=3.0.0.1
+ENV KAFKA_MANAGER_VERSION=3.0.0.1
 ENV KAFKA_MANAGER_SRC_DIR=/kafka-manager-source
 ENV KAFKA_MANAGER_DIST_FILE=$KAFKA_MANAGER_SRC_DIR/target/universal/kafka-manager-$KAFKA_MANAGER_VERSION.zip
 
@@ -18,7 +18,7 @@ ADD robust_build.sh /
 RUN chmod +x robust_build.sh && /robust_build.sh
 
 ### STAGE 2: Package ###
-FROM openjdk:8-jre-alpine
+FROM openjdk:11-jre-alpine
 MAINTAINER Hleb Albau <hleb.albau@gmail.com>
 
 RUN apk update && apk add bash
