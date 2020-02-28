@@ -25,6 +25,7 @@ MAINTAINER Hleb Albau <hleb.albau@gmail.com>
 COPY --from=build /kafka-manager-bin /kafka-manager
 
 VOLUME /kafka-manager/conf
+ENV JAVA_OPTS=-XX:MaxRAMPercentage=80
 ##CMD ["/kafka-manager/bin/cmak", "-Dpidfile.path=/dev/null", "-Dapplication.home=/kafka-manager"]
-ENTRYPOINT ["/kafka-manager/bin/cmak", "-Dpidfile.path=/dev/null", "-Dapplication.home=/kafka-manager"]
+ENTRYPOINT ["/kafka-manager/bin/cmak", "-Dpidfile.path=/dev/null", "-Dapplication.home=/kafka-manager", ""]
 
