@@ -35,6 +35,12 @@ services:
       APPLICATION_SECRET: "random-secret"
     command: -Dpidfile.path=/dev/null
 ```
+### In Kubernetes with Kubernetes operator
+
+It is possible to use dedicated CMAK operator for installing and configuring CMAK in Kubernetes.
+The operator uses this docker image as one of its component.
+
+Installation instructions could be found at [CMAK operator homepage](https://github.com/eshepelyuk/cmak-operator). 
 
 ### Secure with basic authentication
 
