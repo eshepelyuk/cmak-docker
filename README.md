@@ -18,8 +18,7 @@ Kafka Manager images come in two flavors:
 docker run -d \
      -p 9000:9000  \
      -e ZK_HOSTS="localhost:2181" \
-     hlebalbau/kafka-manager:stable \
-     -Dpidfile.path=/dev/null
+     hlebalbau/kafka-manager:stable
 ```     
 
 ### Using docker-compose
@@ -33,7 +32,6 @@ services:
     environment:
       ZK_HOSTS: "zoo:2181"
       APPLICATION_SECRET: "random-secret"
-    command: -Dpidfile.path=/dev/null
 ```
 ### In Kubernetes with Kubernetes operator
 
