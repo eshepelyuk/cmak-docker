@@ -1,5 +1,4 @@
-
-# kafka-manager-docker
+# kafka-manager-docker (CMAK)
  [![Docker Stars](https://img.shields.io/docker/stars/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
  [![Docker pulls](https://img.shields.io/docker/pulls/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
 [![Docker Automated build](https://img.shields.io/docker/automated/hlebalbau/kafka-manager.svg?maxAge=31536000&style=flat-square)](https://github.com/hlebalbau/kafka-manager/)
@@ -7,47 +6,88 @@
 You are invited to contribute [new features, fixes, or updates](https://github.com/hleb-albau/kafka-manager-docker/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22), large or small; I am always thrilled to receive pull requests, and do my best to process them as fast as I can.
 
 ## Tags
+
 Kafka Manager images come in two flavors:
 
 - **stable:** Build from latest Kafka Manager repository release.
 - **latest:** Periodically assembled master builds. Better not to use in production.
 
 ## How to use this image
-### Using docker
-```
-docker run -d \
-     -p 9000:9000  \
-     -e ZK_HOSTS="localhost:2181" \
-     hlebalbau/kafka-manager:stable
-```     
 
-### Using docker-compose
-```
+[CMAK](https://github.com/yahoo/CMAK) uses Zookeeper only as storage for own settings.
+I.e. Zookeeper only plays role of a local database.
+CMAK is unable to detect Kafka cluster from provided Zookeper,
+Kafka cluster settings must be provided explicitely.
+
+It's recommended to always run dedicated Zookeeper instance to be used by CMAK.
+
+Use `docker-compose` with following content:
+
+```yaml
 version: '3.6'
 services:
-  kafka_manager:
+  zk:
+    image: zookeeper:latest
+    restart: always
+    environment:
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181
+  cmak:
     image: hlebalbau/kafka-manager:stable
+    restart: always
     ports:
       - "9000:9000"
     environment:
-      ZK_HOSTS: "zoo:2181"
-      APPLICATION_SECRET: "random-secret"
+      ZK_HOSTS: "zk:2181"
 ```
-### In Kubernetes with Kubernetes operator
+
+To quickly launch the file above, execute
+
+```bash
+$ curl -sL https://raw.githubusercontent.com/hleb-albau/kafka-manager-docker/master/examples/docker-compose-sample.yaml | \
+    docker-compose -f - up
+```
+
+## Configuration
+
+CMAK reads its configuration from file [/cmak/conf/application.conf](https://github.com/yahoo/CMAK/blob/master/conf/application.conf).
+Every parameter could be overriden via JVM system property, i.e. `-DmyProp=myVal`.
+Properties are passed to CMAK container via [docker arguments](https://docs.docker.com/engine/reference/builder/#cmd).
+
+For example, to enable basic authentication and configure zookeeper hosts using `docker-compose`:
+
+```yaml
+version: '3.6'
+services:
+  zk:
+    image: zookeeper:latest
+    restart: always
+    environment:
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181
+  cmak:
+    image: hlebalbau/kafka-manager:stable
+    restart: always
+    command:
+      - "-Dcmak.zkhosts=zk:2181"
+      - "-DbasicAuthentication.enabled=true"
+      - "-DbasicAuthentication.username=username"
+      - "-DbasicAuthentication.password=password"
+    ports:
+      - "9000:9000"
+```
+
+To quickly launch the file above, execute
+
+```bash
+$ curl -sL https://raw.githubusercontent.com/hleb-albau/kafka-manager-docker/master/examples/docker-compose-override.yaml | \
+    docker-compose -f - up
+```
+
+## Usage in Kubernetes
 
 It is possible to use dedicated CMAK operator for installing and configuring CMAK in Kubernetes.
-The operator uses this docker image as one of its component.
+That operator uses this docker image as one of its component.
 
-Installation instructions could be found at [CMAK operator homepage](https://github.com/eshepelyuk/cmak-operator). 
-
-### Secure with basic authentication
-
-Add the following env variables if you want to protect the web UI with basic authentication:  
-```
-KAFKA_MANAGER_AUTH_ENABLED: "true"
-KAFKA_MANAGER_USERNAME: username
-KAFKA_MANAGER_PASSWORD: password
-```
+Installation instructions available at [CMAK operator homepage](https://github.com/eshepelyuk/cmak-operator).
 
 ## Issues
 
