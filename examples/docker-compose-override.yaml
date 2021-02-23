@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  zk:
+    image: zookeeper:latest
+    restart: always
+    environment:
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181
+  cmak:
+    image: hlebalbau/kafka-manager:stable
+    restart: always
+    command:
+      - "-Dcmak.zkhosts=zk:2181"
+      - "-DbasicAuthentication.enabled=true"
+      - "-DbasicAuthentication.username=username"
+      - "-DbasicAuthentication.password=password"
+    ports:
+      - "9000:9000"
