@@ -17,6 +17,6 @@ VOLUME /cmak/conf
 ENV JAVA_OPTS=-XX:MaxRAMPercentage=80
 
 WORKDIR /cmak
-
+RUN sed -i 's/\/dev\/random/\/dev\/.\/urandom/g' /usr/local/openjdk-11/conf/security/java.security
 ENTRYPOINT ["/cmak/bin/cmak", "-Dpidfile.path=/dev/null", "-Dapplication.home=/cmak", ""]
 
