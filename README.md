@@ -1,5 +1,6 @@
 # kafka-manager-docker (CMAK)
- [![Docker Stars](https://img.shields.io/docker/stars/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
+
+[![Docker Stars](https://img.shields.io/docker/stars/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
  [![Docker pulls](https://img.shields.io/docker/pulls/hlebalbau/kafka-manager.svg?style=flat-square)](https://registry.hub.docker.com/v2/repositories/hlebalbau/kafka-manager/)
 [![Docker Automated build](https://img.shields.io/docker/automated/hlebalbau/kafka-manager.svg?maxAge=31536000&style=flat-square)](https://github.com/hlebalbau/kafka-manager/)
 
@@ -49,6 +50,8 @@ $ curl -sL https://raw.githubusercontent.com/hleb-albau/kafka-manager-docker/mas
 
 ## Configuration
 
+### CMAK application configuration
+
 CMAK reads its configuration from file [/cmak/conf/application.conf](https://github.com/yahoo/CMAK/blob/master/conf/application.conf).
 Every parameter could be overriden via JVM system property, i.e. `-DmyProp=myVal`.
 Properties are passed to CMAK container via [docker arguments](https://docs.docker.com/engine/reference/builder/#cmd).
@@ -81,6 +84,15 @@ To quickly launch the file above, execute
 $ curl -sL https://raw.githubusercontent.com/hleb-albau/kafka-manager-docker/master/examples/docker-compose-override.yaml | \
     docker-compose -f - up
 ```
+
+### Kafka clusters configuration
+
+CMAK doesn't provide tools to preconfigure managed Kafka clusters from files.
+It could be done either via HTTP API or via CMAK UI in browser.
+This could be inconvenient for declarative configuration or GitOps flow.
+
+To overcome the issue there exist standalone `cmak2zk` tool.
+The information and usage examples could be found at [cmak2zk homepage](https://github.com/eshepelyuk/cmak-operator#standalone-cmak2zk-tool).
 
 ## Usage in Kubernetes
 
