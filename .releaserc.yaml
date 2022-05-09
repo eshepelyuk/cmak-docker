@@ -1,0 +1,22 @@
+branches:
+  - master
+
+tagFormat: "${version}"
+
+preset: "conventionalcommits"
+
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "semantic-release-commitlint"
+  - "@semantic-release/release-notes-generator"
+  -
+    - "@semantic-release/git"
+    - assets: []
+      messsage: false
+  -
+    - "@semantic-release/github"
+    - successComment: false
+      failComment: false
+  -
+    - "@semantic-release/exec"
+    - publishCmd: "just publish ${nextRelease.version}"

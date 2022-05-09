@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta28
+kind: Config
+metadata:
+  name: cmak-docker
+build:
+  artifacts:
+    - image: ghcr.io/eshepelyuk/dckr/cmak-3.0.0.5
+      context: .
+      docker:
+        buildArgs:
+          CMAK_VERSION: "3.0.0.5"
+  local:
+    push: true
+    useBuildkit: true

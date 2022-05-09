@@ -1,0 +1,31 @@
+name: Build
+on:
+  push:
+    paths-ignore:
+      - "examples/*.*"
+      - "*.md"
+    branches: 
+      - "master"
+  pull_request:
+    branches: 
+      - "master"
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 20
+      - uses: wagoid/commitlint-github-action@v4
+        with:
+          configFile: .commitlintrc.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          docker run -d -p 5000:5000 registry:2
+      - uses: volesen/setup-skaffold@v1.1
+        with:
+          version: v1.38.0
+      - uses: extractions/setup-just@v1
+      - run: | 
+          just build
+

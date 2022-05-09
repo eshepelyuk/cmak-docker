@@ -1,0 +1,24 @@
+name: Publish release
+on:
+  workflow_dispatch
+jobs:
+  rel_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: volesen/setup-skaffold@v1.1
+        with:
+          version: v1.38.0
+      - uses: extractions/setup-just@v1
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: bahmutov/npm-install@v1
+      - name: semantic-release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

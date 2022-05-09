@@ -6,7 +6,7 @@ services:
     environment:
       ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181
   cmak:
-    image: hlebalbau/kafka-manager:stable
+    image: ghcr.io/eshepelyuk/dckr/cmak-3.0.0.5:latest
     restart: always
     command:
       - "-Dcmak.zkhosts=zk:2181"

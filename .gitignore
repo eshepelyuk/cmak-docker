@@ -12,21 +12,11 @@ out/
 .classpath
 .project
 
-# Generated
-target/
-javadoc/
-bin/
-log/
-classes/
-
 # Misc.
 .DS_Store
 *.swp
 *.swo
 
-# externalized configuration file
-cyber.markets.properties
+tags.json
+node_modules/
 
-# Gradle
-.gradle/
-build
