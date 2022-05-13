@@ -17,6 +17,14 @@ build:
       docker:
         buildArgs:
           CMAK_VERSION: "3.0.0.5"
+    - image: ghcr.io/eshepelyuk/dckr/cmak-3.0.0.6
+      context: ./cmak
+      hooks:
+        after:
+          - command: ["sh", "-c", "just _latest"]
+      docker:
+        buildArgs:
+          CMAK_VERSION: "3.0.0.6"
   local:
     push: true
     useBuildkit: true
