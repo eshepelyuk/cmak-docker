@@ -4,10 +4,10 @@ on:
     paths-ignore:
       - "examples/*.*"
       - "*.md"
-    branches: 
+    branches:
       - "master"
   pull_request:
-    branches: 
+    branches:
       - "master"
 jobs:
   build_job:
@@ -26,6 +26,5 @@ jobs:
         with:
           version: v1.38.0
       - uses: extractions/setup-just@v1
-      - run: | 
-          just build
+      - run: skaffold build -d localhost:5000
 

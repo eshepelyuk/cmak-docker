@@ -12,6 +12,7 @@ jobs:
         with:
           version: v1.38.0
       - uses: extractions/setup-just@v1
+      - uses: imjasonh/setup-crane@v0.1
       - uses: docker/login-action@v1
         with:
           registry: ghcr.io

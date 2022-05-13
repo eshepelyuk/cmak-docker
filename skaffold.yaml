@@ -4,8 +4,16 @@ metadata:
   name: cmak-docker
 build:
   artifacts:
+    - image: ghcr.io/eshepelyuk/dckr/cmak2zk
+      context: ./cmak2zk
+      hooks:
+        after:
+          - command: ["sh", "-c", "just _latest"]
     - image: ghcr.io/eshepelyuk/dckr/cmak-3.0.0.5
-      context: .
+      context: ./cmak
+      hooks:
+        after:
+          - command: ["sh", "-c", "just _latest"]
       docker:
         buildArgs:
           CMAK_VERSION: "3.0.0.5"

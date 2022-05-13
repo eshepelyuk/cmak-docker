@@ -1,0 +1,48 @@
+cmak:
+  clustersCommon:
+    curatorConfig:
+      zkMaxRetry: 100
+      baseSleepTimeMs: 100
+      maxSleepTimeMs: 1000
+    enabled: true
+    kafkaVersion: "2.4.0"
+    jmxEnabled: false
+    jmxUser: null
+    jmxPass: null
+    jmxSsl: false
+    pollConsumers: true
+    filterConsumers: false
+    logkafkaEnabled: false
+    activeOffsetCacheEnabled: true
+    displaySizeEnabled: false
+    tuning:
+      brokerViewUpdatePeriodSeconds: 30
+      clusterManagerThreadPoolSize: 10
+      clusterManagerThreadPoolQueueSize: 100
+      kafkaCommandThreadPoolSize: 10
+      kafkaCommandThreadPoolQueueSize: 100
+      logkafkaCommandThreadPoolSize: 10
+      logkafkaCommandThreadPoolQueueSize: 100
+      logkafkaUpdatePeriodSeconds: 30
+      partitionOffsetCacheTimeoutSecs: 5
+      brokerViewThreadPoolSize: 10
+      brokerViewThreadPoolQueueSize: 1000
+      offsetCacheThreadPoolSize: 10
+      offsetCacheThreadPoolQueueSize: 1000
+      kafkaAdminClientThreadPoolSize: 10
+      kafkaAdminClientThreadPoolQueueSize: 1000
+      kafkaManagedOffsetMetadataCheckMillis: 30000
+      kafkaManagedOffsetGroupCacheSize: 1000000
+      kafkaManagedOffsetGroupExpireDays: 7
+    securityProtocol: PLAINTEXT
+    saslMechanism: null
+    jaasConfig: null
+
+  clusters:
+    - name: test
+      curatorConfig:
+        zkConnect: zk:2181
+    - name: test-disabled
+      enabled: false
+      curatorConfig:
+        zkConnect: zk:2181

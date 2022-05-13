@@ -19,4 +19,4 @@ plugins:
       failComment: false
   -
     - "@semantic-release/exec"
-    - publishCmd: "just publish ${nextRelease.version}"
+    - publishCmd: "skaffold build"
