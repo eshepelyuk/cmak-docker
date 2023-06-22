@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.3-labs
-FROM openjdk:11-jre as build
+FROM openjdk:11.0.16-jre as build
 
 ARG CMAK_VERSION
 
@@ -11,7 +11,7 @@ RUN <<EOF
     rm -rf /tmp/cmak.zip
 EOF
 
-FROM openjdk:11-jre-slim
+FROM openjdk:11.0.16-jre-slim
 COPY --from=build /cmak /cmak
 VOLUME /cmak/conf
 ENV JAVA_OPTS=-XX:MaxRAMPercentage=80
